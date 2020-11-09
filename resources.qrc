@@ -1,0 +1,9 @@
+<RCC>
+    <qresource prefix="/sound">
+        <file>PlaceStoneAudio.wav</file>
+        <file>CaptureAudio.wav</file>
+    </qresource>
+    <qresource prefix="/img">
+        <file>homepageBackground.jpg</file>
+    </qresource>
+</RCC>

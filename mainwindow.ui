@@ -1,0 +1,293 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>800</width>
+    <height>600</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true"/>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QStackedWidget" name="mainStack">
+    <property name="geometry">
+     <rect>
+      <x>-50</x>
+      <y>0</y>
+      <width>791</width>
+      <height>541</height>
+     </rect>
+    </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
+    </property>
+    <property name="currentIndex">
+     <number>0</number>
+    </property>
+    <widget class="QWidget" name="homePage">
+     <property name="styleSheet">
+      <string notr="true">QLabel#homeLabel
+{
+	border: 1px solid black;
+	border-radius: 30px;
+	font: bold normal large &quot;Times New Roman&quot;;
+	font-size: 50px;
+	color: rgb(0,0,0);
+	background-position: bottom center;
+	background-color: rgba(255, 255, 255, 100);
+}
+
+QPushButton{
+	border: 1px solid black;
+	border-radius: 20px;
+	background-position: bottom center;
+	background-color: rgba(255, 255, 255, 250);
+	font-size: 20px;
+	color: rgba(0, 0, 0, 200);
+}
+
+QPushButton:hover{
+	border: 1px solid black;
+	border-radius: 20px;
+	background-position: bottom center;
+	background-color: rgba(125, 125, 125, 250);
+	font-size: 20px;
+	color: rgba(250, 250, 250, 250);
+}</string>
+     </property>
+     <widget class="QPushButton" name="menuButton">
+      <property name="geometry">
+       <rect>
+        <x>200</x>
+        <y>400</y>
+        <width>140</width>
+        <height>60</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Play</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="homeLabel">
+      <property name="geometry">
+       <rect>
+        <x>160</x>
+        <y>100</y>
+        <width>450</width>
+        <height>150</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Go Game</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="multiMenuButton">
+      <property name="geometry">
+       <rect>
+        <x>420</x>
+        <y>400</y>
+        <width>141</width>
+        <height>61</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Multiplayer</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="menuPage">
+     <property name="font">
+      <font>
+       <pointsize>24</pointsize>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QLabel{
+	border: 1px solid black;
+	border-radius: 20px;
+	background-position: bottom center;
+	background-color: rgba(255, 255, 255, 250);
+	font-size: 30px;
+	color: rgba(0, 0, 0, 200);
+}
+
+QPushButton{
+	border: 1px solid black;
+	border-radius: 20px;
+	background-position: bottom center;
+	background-color: rgba(255, 255, 255, 250);
+	font-size: 20px;
+	color: rgba(0, 0, 0, 200);
+}
+
+QPushButton:hover{
+	border: 1px solid black;
+	border-radius: 20px;
+	background-position: bottom center;
+	background-color: rgba(125, 125, 125, 250);
+	font-size: 20px;
+	color: rgba(250, 250, 250, 250);
+}
+
+#bgdLabel{
+	border: 1px solid black;
+	border-radius: 20px;
+	background-position: bottom center;
+	background-color: rgba(125, 125, 125, 250);
+}</string>
+     </property>
+     <widget class="QLabel" name="menuLabel">
+      <property name="geometry">
+       <rect>
+        <x>210</x>
+        <y>60</y>
+        <width>371</width>
+        <height>81</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>-1</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>Menu</string>
+      </property>
+     </widget>
+     <widget class="QWidget" name="verticalLayoutWidget">
+      <property name="geometry">
+       <rect>
+        <x>330</x>
+        <y>170</y>
+        <width>131</width>
+        <height>201</height>
+       </rect>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout">
+       <item>
+        <widget class="QRadioButton" name="szNineteen">
+         <property name="font">
+          <font>
+           <pointsize>20</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string>Nineteen</string>
+         </property>
+         <property name="checked">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QRadioButton" name="szThirteen">
+         <property name="font">
+          <font>
+           <pointsize>20</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string>Thirteen</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QRadioButton" name="szNine">
+         <property name="font">
+          <font>
+           <pointsize>20</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string>Nine</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QPushButton" name="gameButton">
+      <property name="geometry">
+       <rect>
+        <x>200</x>
+        <y>400</y>
+        <width>140</width>
+        <height>60</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Start</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="backButton">
+      <property name="geometry">
+       <rect>
+        <x>420</x>
+        <y>400</y>
+        <width>140</width>
+        <height>60</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Back</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="gamePage">
+     <widget class="QLabel" name="label">
+      <property name="geometry">
+       <rect>
+        <x>360</x>
+        <y>90</y>
+        <width>71</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>gamePage</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="multigamePage">
+     <widget class="QLabel" name="labelmulti">
+      <property name="geometry">
+       <rect>
+        <x>350</x>
+        <y>70</y>
+        <width>71</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Multigame</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="settingsPage"/>
+    <widget class="QWidget" name="aboutPage"/>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>800</width>
+     <height>22</height>
+    </rect>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
