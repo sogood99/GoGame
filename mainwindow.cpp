@@ -17,6 +17,8 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), ui(new Ui::MainWin
     label = ui->mainStack->findChild<QLabel*>("menuLabel");
     label->setAlignment(Qt::AlignCenter);
     label->setFont(QFont("Times", 100, QFont::Bold, false));
+
+    gameWgt = nullptr;
 }
 
 MainWindow::~MainWindow(){
