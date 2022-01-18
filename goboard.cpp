@@ -2,16 +2,18 @@
 
 // public _______
 
-GoBoard::GoBoard(size boardSize){
+GoBoard::GoBoard(size boardSize)
+{
     /*
         Initialize GoBoard Class
     */
     GoBoard::boardSize = boardSize;
-    currentBoard = QVector<QVector<stone> >(boardSize, QVector<stone>(boardSize, noStone));
+    currentBoard = QVector<QVector<stone>>(boardSize, QVector<stone>(boardSize, noStone));
     lastBoard = currentBoard;
 }
 
-void GoBoard::putStone(Pos p, stone stn){
+void GoBoard::putStone(Pos p, stone stn)
+{
     /*
         Put stone on board and dont care if it's valid
     */
@@ -20,26 +22,31 @@ void GoBoard::putStone(Pos p, stone stn){
     currentBoard[x][y] = stn;
 }
 
-boolInt GoBoard::placeStone(Pos p, stone stn){
+boolInt GoBoard::placeStone(Pos p, stone stn)
+{
     /*
         Put stone on board and check if it's valid
         Returns bool for if valid and placed
                 int for capture count
     */
-    if (!positionInBoard(p)){
+    if (!positionInBoard(p))
+    {
         return boolInt(false);
     }
-    if (!positionIsEmpty(p)){
+    if (!positionIsEmpty(p))
+    {
         return boolInt(false);
     }
 
-    if (isKo(p, stn)){
+    if (isKo(p, stn))
+    {
         return boolInt(false);
     }
 
     CapturedTuple captup = captureOther(p, stn);
 
-    if (captup.isCaptured){
+    if (captup.isCaptured)
+    {
         setLastBoard();
         removeCapturedStones(captup);
         int x = p.position[0];
@@ -48,7 +55,8 @@ boolInt GoBoard::placeStone(Pos p, stone stn){
         captup.countCaptured();
         return boolInt(true, captup.captureNum);
     }
-    if (isSuicide(p, stn)){
+    if (isSuicide(p, stn))
+    {
         return boolInt(false);
     }
     setLastBoard();
@@ -56,131 +64,167 @@ boolInt GoBoard::placeStone(Pos p, stone stn){
     return boolInt(true);
 }
 
-bool GoBoard::canPlaceStone(Pos p, stone stn){
+bool GoBoard::canPlaceStone(Pos p, stone stn)
+{
     /*
         Only check if it's valid to place stone
     */
-    if (!positionInBoard(p)){
+    if (!positionInBoard(p))
+    {
         return false;
     }
-    if (!positionIsEmpty(p)){
+    if (!positionIsEmpty(p))
+    {
         return false;
     }
-    if (isKo(p, stn)){
+    if (isKo(p, stn))
+    {
         return false;
     }
     CapturedTuple captup = captureOther(p, stn);
-    if (captup.isCaptured){
+    if (captup.isCaptured)
+    {
         return true;
     }
-    if (isSuicide(p, stn)){
+    if (isSuicide(p, stn))
+    {
         return false;
     }
     return true;
 }
 
-QVector<QVector<stone>> GoBoard::floodFill(QVector<QVector<DeadStone>> deadStones){
+QVector<QVector<stone>> GoBoard::floodFill(QVector<QVector<DeadStone>> deadStones)
+{
     /*
         Flood fill based on DFS used in area scoring
     */
-    QVector<QVector<stone>> filled(boardSize, QVector<stone>(boardSize,noStone));
+    QVector<QVector<stone>> filled(boardSize, QVector<stone>(boardSize, noStone));
 
-    QVector<QVector<bool>> accessed(boardSize, QVector<bool>(boardSize,false));
-    for (int i = 0; i < boardSize; i++){
-        for (int j = 0; j < boardSize; j++){
-            DFSFloodFill(i,j,accessed,filled,deadStones);
+    QVector<QVector<bool>> accessed(boardSize, QVector<bool>(boardSize, false));
+    for (int i = 0; i < boardSize; i++)
+    {
+        for (int j = 0; j < boardSize; j++)
+        {
+            DFSFloodFill(i, j, accessed, filled, deadStones);
         }
     }
     return filled;
 }
 
-void GoBoard::displayBoardConsole(){
+void GoBoard::displayBoardConsole()
+{
     /*
         Display board used in early versions
     */
-    std::cout<< std::setw(2)<<"";
-    for (int i = 0; i < boardSize; i++){
-        std::cout<< std::setw(2)<<std::right<< i;
+    std::cout << std::setw(2) << "";
+    for (int i = 0; i < boardSize; i++)
+    {
+        std::cout << std::setw(2) << std::right << i;
     }
-    std::cout<<std::endl;
-    for (int i = 0; i < boardSize; i++){
-        std::cout<< std::setw(2)<<std::left<< i;
-        for (int j = 0; j < boardSize; j++){
-            if (currentBoard[i][j] == noStone){
-                std::cout<< std::setw(2)<<std::right<< ".";
-            }else if (currentBoard[i][j] == black){
-                std::cout<< std::setw(2)<<std::right<< "X";
-            }else{
-                std::cout<< std::setw(2)<<std::right<< "O";
+    std::cout << std::endl;
+    for (int i = 0; i < boardSize; i++)
+    {
+        std::cout << std::setw(2) << std::left << i;
+        for (int j = 0; j < boardSize; j++)
+        {
+            if (currentBoard[i][j] == noStone)
+            {
+                std::cout << std::setw(2) << std::right << ".";
+            }
+            else if (currentBoard[i][j] == black)
+            {
+                std::cout << std::setw(2) << std::right << "X";
+            }
+            else
+            {
+                std::cout << std::setw(2) << std::right << "O";
             }
         }
-        std::cout<<std::endl;
+        std::cout << std::endl;
     }
 }
 
-void GoBoard::displayLastBoardConsole(){
+void GoBoard::displayLastBoardConsole()
+{
     /*
         Display last board used in early versions
     */
-    std::cout<< std::setw(2)<<"";
-    for (int i = 0; i < boardSize; i++){
-        std::cout<< std::setw(2)<<std::right<< i;
+    std::cout << std::setw(2) << "";
+    for (int i = 0; i < boardSize; i++)
+    {
+        std::cout << std::setw(2) << std::right << i;
     }
-    std::cout<<std::endl;
-    for (int i = 0; i < boardSize; i++){
-        std::cout<< std::setw(2)<<std::left<< i;
-        for (int j = 0; j < boardSize; j++){
-            if (lastBoard[i][j] == noStone){
-                std::cout<< std::setw(2)<<std::right<< ".";
-            }else if (lastBoard[i][j] == black){
-                std::cout<< std::setw(2)<<std::right<< "X";
-            }else{
-                std::cout<< std::setw(2)<<std::right<< "O";
+    std::cout << std::endl;
+    for (int i = 0; i < boardSize; i++)
+    {
+        std::cout << std::setw(2) << std::left << i;
+        for (int j = 0; j < boardSize; j++)
+        {
+            if (lastBoard[i][j] == noStone)
+            {
+                std::cout << std::setw(2) << std::right << ".";
+            }
+            else if (lastBoard[i][j] == black)
+            {
+                std::cout << std::setw(2) << std::right << "X";
+            }
+            else
+            {
+                std::cout << std::setw(2) << std::right << "O";
             }
         }
-        std::cout<<std::endl;
+        std::cout << std::endl;
     }
 }
 
 // private ________
 
-QVector<Pos> GoBoard::neighbor(Pos p){
+QVector<Pos> GoBoard::neighbor(Pos p)
+{
     /*
         Find neighbors of a point, accounting for edges
     */
     QVector<Pos> N;
     int x = p.position[0];
     int y = p.position[1];
-    if (x > 0){
+    if (x > 0)
+    {
         N.push_back(Pos(x - 1, y));
     }
-    if (x < boardSize - 1){
-        N.push_back(Pos(x+1, y));
+    if (x < boardSize - 1)
+    {
+        N.push_back(Pos(x + 1, y));
     }
-    if (y > 0){
-        N.push_back(Pos(x, y-1));
+    if (y > 0)
+    {
+        N.push_back(Pos(x, y - 1));
     }
-    if (y < boardSize - 1){
-        N.push_back(Pos(x, y+1));
+    if (y < boardSize - 1)
+    {
+        N.push_back(Pos(x, y + 1));
     }
     return N;
 }
 
-bool GoBoard::positionInBoard(Pos p){
+bool GoBoard::positionInBoard(Pos p)
+{
     /*
         Check if position is in board
     */
     int x = p.position[0];
     int y = p.position[1];
-    if (x<boardSize && x >= 0){
-        if (y < boardSize && y >= 0){
+    if (x < boardSize && x >= 0)
+    {
+        if (y < boardSize && y >= 0)
+        {
             return true;
         }
     }
     return false;
 }
 
-bool GoBoard::positionIsEmpty(Pos p){
+bool GoBoard::positionIsEmpty(Pos p)
+{
     /*
         Check if position is empty, assumes position is in board
     */
@@ -189,22 +233,26 @@ bool GoBoard::positionIsEmpty(Pos p){
     return (currentBoard[x][y] == noStone);
 }
 
-bool GoBoard::isKo(Pos p, stone stn){
+bool GoBoard::isKo(Pos p, stone stn)
+{
     /*
         Checks if position is ko, assumes position is in board
     */
     int x = p.position[0];
     int y = p.position[1];
-    if (lastBoard[x][y] != stn){
+    if (lastBoard[x][y] != stn)
+    {
         return false;
     }
     QVector<Pos> neigh = neighbor(p);
     bool onlyOne = true;
-    for (int i = 0; i < neigh.size(); i++){
+    for (int i = 0; i < neigh.size(); i++)
+    {
         int a = neigh[i].position[0];
         int b = neigh[i].position[1];
 
-        if (lastBoard[a][b] == stn){
+        if (lastBoard[a][b] == stn)
+        {
             onlyOne = false;
             break;
         }
@@ -212,7 +260,8 @@ bool GoBoard::isKo(Pos p, stone stn){
     return (onlyOne);
 }
 
-bool GoBoard::isSuicide(Pos p, stone stn){
+bool GoBoard::isSuicide(Pos p, stone stn)
+{
     /*
         Checks if position is suicide, assumes position is in board
     */
@@ -221,35 +270,41 @@ bool GoBoard::isSuicide(Pos p, stone stn){
     currentBoard[x][y] = stn;
     CapturedTuple captup = capture(p, stn);
     currentBoard[x][y] = noStone;
-    if (captup.isCaptured){
+    if (captup.isCaptured)
+    {
         return true;
     }
     return false;
 }
 
-bool GoBoard::isEye(Pos p, stone stn){
+bool GoBoard::isEye(Pos p, stone stn)
+{
     /*
         Check is position is eye, assumes position is in board
     */
     QVector<Pos> N = neighbor(p);
-    for (int i = 0; i < N.size(); i++){
+    for (int i = 0; i < N.size(); i++)
+    {
         int x = N[i].position[0];
         int y = N[i].position[1];
-        if (currentBoard[x][y] != stn){
+        if (currentBoard[x][y] != stn)
+        {
             return false;
         }
     }
     return true;
 }
 
-void GoBoard::setLastBoard(){
+void GoBoard::setLastBoard()
+{
     /*
         Set last board to current board, used in setting next move
     */
     lastBoard = currentBoard;
 }
 
-CapturedTuple GoBoard::captureOther(Pos p, stone stn){
+CapturedTuple GoBoard::captureOther(Pos p, stone stn)
+{
     /*
         Capture other by using capture function and place stone
     */
@@ -259,9 +314,11 @@ CapturedTuple GoBoard::captureOther(Pos p, stone stn){
     int x = p.position[0];
     int y = p.position[1];
     currentBoard[x][y] = stn;
-    for (int i = 0; i < neigh.size(); i++){
+    for (int i = 0; i < neigh.size(); i++)
+    {
         CapturedTuple capTemp = capture(neigh[i], otherStone(stn));
-        if (capTemp.isCaptured){
+        if (capTemp.isCaptured)
+        {
             captureTup.append(capTemp);
         }
     }
@@ -269,7 +326,8 @@ CapturedTuple GoBoard::captureOther(Pos p, stone stn){
     return captureTup;
 }
 
-CapturedTuple GoBoard::capture(Pos p, stone stn){
+CapturedTuple GoBoard::capture(Pos p, stone stn)
+{
     /*
         Returns capturedTuple (bool int vector) for detecting captured stones
         Combined with place stone function to detect if capture other (used in capture other)
@@ -277,7 +335,8 @@ CapturedTuple GoBoard::capture(Pos p, stone stn){
     int x = p.position[0];
     int y = p.position[1];
 
-    if (currentBoard[x][y] != stn){
+    if (currentBoard[x][y] != stn)
+    {
         return CapturedTuple(boardSize);
     }
 
@@ -288,22 +347,29 @@ CapturedTuple GoBoard::capture(Pos p, stone stn){
     capturedState capturedStateofGroup = notAccessed;
     CapturedTuple capturedTup(boardSize);
 
-    while (!Front.empty()){
+    while (!Front.empty())
+    {
         long int sz = Front.size();
-        for (long int i = 0; i < sz; i++){
+        for (long int i = 0; i < sz; i++)
+        {
             Pos front = Front.front();
             Front.pop_front();
             QVector<Pos> N = neighbor(front);
-            for (int j = 0; j < N.size(); j++){
+            for (int j = 0; j < N.size(); j++)
+            {
                 int x = N[j].position[0];
                 int y = N[j].position[1];
-                if (!accessed[x][y] && currentBoard[x][y] != otherStone(stn)){
+                if (!accessed[x][y] && currentBoard[x][y] != otherStone(stn))
+                {
                     // make sure in group and not accessed
                     Front.push_back(N[j]);
                     accessed[x][y] = true;
-                    if (capturedTup.capturedVector[x][y] != notAccessed){
-                        capturedStateofGroup = capturedTup.getState(Pos(x,y));
-                    }else if (currentBoard[x][y] == noStone){
+                    if (capturedTup.capturedVector[x][y] != notAccessed)
+                    {
+                        capturedStateofGroup = capturedTup.getState(Pos(x, y));
+                    }
+                    else if (currentBoard[x][y] == noStone)
+                    {
                         capturedStateofGroup = notCaptured;
                         break;
                     }
@@ -311,15 +377,20 @@ CapturedTuple GoBoard::capture(Pos p, stone stn){
             }
         }
 
-        if (capturedStateofGroup == notCaptured){
+        if (capturedStateofGroup == notCaptured)
+        {
             break;
         }
     }
 
-    if (capturedStateofGroup == notAccessed || capturedStateofGroup == Captured){
-        for (int i = 0; i < boardSize; i++){
-            for (int j = 0; j < boardSize; j++){
-                if (accessed[i][j]){
+    if (capturedStateofGroup == notAccessed || capturedStateofGroup == Captured)
+    {
+        for (int i = 0; i < boardSize; i++)
+        {
+            for (int j = 0; j < boardSize; j++)
+            {
+                if (accessed[i][j])
+                {
                     capturedTup.setCaptured(Pos(i, j));
                 }
             }
@@ -330,13 +401,17 @@ CapturedTuple GoBoard::capture(Pos p, stone stn){
     return capturedTup;
 }
 
-void GoBoard::removeCapturedStones(CapturedTuple capturedTup){
+void GoBoard::removeCapturedStones(CapturedTuple capturedTup)
+{
     /*
         Removes captured stones
     */
-    for (int i = 0; i < boardSize; i++){
-        for (int j = 0; j < boardSize; j++){
-            if (capturedTup.getState(Pos(i, j)) == Captured){
+    for (int i = 0; i < boardSize; i++)
+    {
+        for (int j = 0; j < boardSize; j++)
+        {
+            if (capturedTup.getState(Pos(i, j)) == Captured)
+            {
                 currentBoard[i][j] = noStone;
             }
         }
@@ -345,52 +420,67 @@ void GoBoard::removeCapturedStones(CapturedTuple capturedTup){
 
 //private
 
-void GoBoard::DFSFloodFill(int i, int j, QVector<QVector<bool>> &accessed,QVector<QVector<stone> > &filled,
-                            QVector<QVector<DeadStone> > deadStones){
+void GoBoard::DFSFloodFill(int i, int j, QVector<QVector<bool>> &accessed, QVector<QVector<stone>> &filled,
+                           QVector<QVector<DeadStone>> deadStones)
+{
     /*
         Uses DPS for flood fill, used in flood fill
     */
-    if (accessed[i][j]){
+    if (accessed[i][j])
+    {
         return;
     }
-    if (currentBoard[i][j] != noStone && deadStones[i][j] == notDead){
+    if (currentBoard[i][j] != noStone && deadStones[i][j] == notDead)
+    {
         accessed[i][j] = true;
         filled[i][j] = currentBoard[i][j];
         return;
     }
-    QVector<Pos> front = {Pos(i,j)};
+    QVector<Pos> front = {Pos(i, j)};
     QVector<Pos> nextFront;
     QVector<QVector<bool>> currentAccessed(boardSize, QVector<bool>(boardSize, false));
     currentAccessed[i][j] = true;
     stone groupStone = noStone;
     int n = front.size();
     bool bothStones = false;
-    while (n){
-        for (int i = 0; i < n; i++){
+    while (n)
+    {
+        for (int i = 0; i < n; i++)
+        {
             int x = front[i].position[0];
             int y = front[i].position[1];
-            if (accessed[x][y] && filled[x][y]){
+            if (accessed[x][y] && filled[x][y])
+            {
                 groupStone = filled[x][y];
-            }else if (currentBoard[x][y] != noStone && deadStones[x][y] == notDead){
-                if (groupStone != noStone && currentBoard[x][y] != groupStone){
+            }
+            else if (currentBoard[x][y] != noStone && deadStones[x][y] == notDead)
+            {
+                if (groupStone != noStone && currentBoard[x][y] != groupStone)
+                {
                     groupStone = noStone;
                     bothStones = true;
-                }else if (!bothStones){
+                }
+                else if (!bothStones)
+                {
                     groupStone = currentBoard[x][y];
                 }
             }
-            if (currentBoard[x][y] == noStone || deadStones[x][y] == isDead){
-                if (!accessed[x][y]){
-                QVector<Pos> neigh = neighbor(front[i]);
-                int m = neigh.size();
-                for (int j = 0; j < m; j++){
-                    int a = neigh[j].position[0];
-                    int b = neigh[j].position[1];
-                    if (!currentAccessed[a][b]){
-                        nextFront.append(Pos(a,b));
-                        currentAccessed[a][b] = true;
+            if (currentBoard[x][y] == noStone || deadStones[x][y] == isDead)
+            {
+                if (!accessed[x][y])
+                {
+                    QVector<Pos> neigh = neighbor(front[i]);
+                    int m = neigh.size();
+                    for (int j = 0; j < m; j++)
+                    {
+                        int a = neigh[j].position[0];
+                        int b = neigh[j].position[1];
+                        if (!currentAccessed[a][b])
+                        {
+                            nextFront.append(Pos(a, b));
+                            currentAccessed[a][b] = true;
+                        }
                     }
-                }
                 }
             }
         }
@@ -398,29 +488,34 @@ void GoBoard::DFSFloodFill(int i, int j, QVector<QVector<bool>> &accessed,QVecto
         nextFront = QVector<Pos>();
         n = front.size();
     }
-    for (int i = 0; i < boardSize; i++){
-        for (int j = 0; j < boardSize; j++){
-            if (currentAccessed[i][j]){
-                if (deadStones[i][j] == isDead || currentBoard[i][j] == noStone){
+    for (int i = 0; i < boardSize; i++)
+    {
+        for (int j = 0; j < boardSize; j++)
+        {
+            if (currentAccessed[i][j])
+            {
+                if (deadStones[i][j] == isDead || currentBoard[i][j] == noStone)
+                {
                     filled[i][j] = groupStone;
                     accessed[i][j] = true;
                 }
             }
         }
     }
-
 }
 
 // caputure class
 
-CapturedTuple::CapturedTuple(size boardSize){
+CapturedTuple::CapturedTuple(size boardSize)
+{
     /*
         Initialize captured tuple
     */
     capturedVector = QVector<QVector<capturedState>>(boardSize, QVector<capturedState>(boardSize, notAccessed));
 }
 
-CapturedTuple::CapturedTuple(size boardSize, bool tfCaptured){
+CapturedTuple::CapturedTuple(size boardSize, bool tfCaptured)
+{
     /*
         Initialize captured tuple
     */
@@ -428,14 +523,16 @@ CapturedTuple::CapturedTuple(size boardSize, bool tfCaptured){
     setBool(tfCaptured);
 }
 
-void CapturedTuple::setBool(bool tf){
+void CapturedTuple::setBool(bool tf)
+{
     /*
         Set bool
     */
     isCaptured = tf;
 }
 
-void CapturedTuple::setCaptured(Pos p){
+void CapturedTuple::setCaptured(Pos p)
+{
     /*
         Set position captured
     */
@@ -444,7 +541,8 @@ void CapturedTuple::setCaptured(Pos p){
     capturedVector[x][y] = Captured;
 }
 
-void CapturedTuple::setNotCaptured(Pos p){
+void CapturedTuple::setNotCaptured(Pos p)
+{
     /*
         Set position not captured
     */
@@ -453,7 +551,8 @@ void CapturedTuple::setNotCaptured(Pos p){
     capturedVector[x][y] = notCaptured;
 }
 
-capturedState CapturedTuple::getState(Pos p){
+capturedState CapturedTuple::getState(Pos p)
+{
     /*
         Get position of position
     */
@@ -462,34 +561,43 @@ capturedState CapturedTuple::getState(Pos p){
     return capturedVector[x][y];
 }
 
-void CapturedTuple::append(CapturedTuple other){
+void CapturedTuple::append(CapturedTuple other)
+{
     /*
         Merge two captured tuples
     */
     int n = capturedVector[0].size();
-    if (!other.isCaptured){
+    if (!other.isCaptured)
+    {
         return;
     }
     isCaptured = true;
-    for (int i = 0; i < n; i++){
-        for (int j = 0; j < n; j++){
-            if (other.capturedVector[i][j] == Captured){
+    for (int i = 0; i < n; i++)
+    {
+        for (int j = 0; j < n; j++)
+        {
+            if (other.capturedVector[i][j] == Captured)
+            {
                 capturedVector[i][j] = Captured;
             }
         }
     }
 }
 
-int CapturedTuple::countCaptured(){
+int CapturedTuple::countCaptured()
+{
     /*
         Count number of captured stones
     */
     captureNum = 0;
     long int n = capturedVector[0].size();
-    for (long int i = 0; i < n; i++){
-        for (long int j = 0; j < n; j++){
-            if (capturedVector[i][j] == Captured){
-                captureNum ++;
+    for (long int i = 0; i < n; i++)
+    {
+        for (long int j = 0; j < n; j++)
+        {
+            if (capturedVector[i][j] == Captured)
+            {
+                captureNum++;
             }
         }
     }

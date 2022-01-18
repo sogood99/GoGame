@@ -1,6 +1,7 @@
 #include "multiplayermenuwidget.h"
 
-MultiplayerMenuWidget::MultiplayerMenuWidget(QWidget *parent, QStackedWidget* mainstack){
+MultiplayerMenuWidget::MultiplayerMenuWidget(QWidget *parent, QStackedWidget *mainstack)
+{
     /*
         Initialize MultiplayerMenuWidget, creategame/findgame
     */
@@ -14,7 +15,7 @@ MultiplayerMenuWidget::MultiplayerMenuWidget(QWidget *parent, QStackedWidget* ma
     findGameButton = new QPushButton(buttonWidget);
     exitButton = new QPushButton(backgroundWidget);
 
-    backgroundWidget->setGeometry(0,0,800,600);
+    backgroundWidget->setGeometry(0, 0, 800, 600);
     backgroundWidget->setStyleSheet("background-image:/img/homepageBackground.jpg;"
                                     "background-repeat: no-repeat;");
     backgroundWidget->show();
@@ -23,11 +24,11 @@ MultiplayerMenuWidget::MultiplayerMenuWidget(QWidget *parent, QStackedWidget* ma
     exitButton->setText("Exit");
 
     buttonWidget->setStyleSheet("QPushButton{border: 1px solid black;"
-                                    "border-radius: 20px;"
-                                    "background-position: bottom center;"
-                                    "background-color: rgba(255, 255, 255, 250);"
-                                    "font-size: 20px;"
-                                    "color: rgba(0, 0, 0, 200);}"
+                                "border-radius: 20px;"
+                                "background-position: bottom center;"
+                                "background-color: rgba(255, 255, 255, 250);"
+                                "font-size: 20px;"
+                                "color: rgba(0, 0, 0, 200);}"
                                 "QPushButton:hover{	border: 1px solid black;"
                                 "border-radius: 20px;"
                                 "background-position: bottom center;"
@@ -35,17 +36,17 @@ MultiplayerMenuWidget::MultiplayerMenuWidget(QWidget *parent, QStackedWidget* ma
                                 "font-size: 20px;"
                                 "color: rgba(250, 250, 250, 250);}");
 
-    buttonWidget->setGeometry(100,100,300,500);
-    createGameButton->setGeometry(0,0,150,50);
-    findGameButton->setGeometry(0,100,150,50);
+    buttonWidget->setGeometry(100, 100, 300, 500);
+    createGameButton->setGeometry(0, 0, 150, 50);
+    findGameButton->setGeometry(0, 100, 150, 50);
 
-    exitButton->setGeometry(100,300,100,50);
+    exitButton->setGeometry(100, 300, 100, 50);
     exitButton->setStyleSheet("QPushButton{border: 1px solid black;"
-                                    "border-radius: 20px;"
-                                    "background-position: bottom center;"
-                                    "background-color: rgba(255, 255, 255, 250);"
-                                    "font-size: 17px;"
-                                    "color: rgba(0, 0, 0, 200);}"
+                              "border-radius: 20px;"
+                              "background-position: bottom center;"
+                              "background-color: rgba(255, 255, 255, 250);"
+                              "font-size: 17px;"
+                              "color: rgba(0, 0, 0, 200);}"
                               "QPushButton:hover{border: 1px solid black;"
                               "border-radius: 20px;"
                               "background-position: bottom center;"
@@ -56,27 +57,27 @@ MultiplayerMenuWidget::MultiplayerMenuWidget(QWidget *parent, QStackedWidget* ma
 
     findGameWidget = new QWidget(backgroundWidget);
     findGameWidget->setStyleSheet("QPushButton{border: 1px solid black;"
-                                    "border-radius: 20px;"
-                                    "background-position: bottom center;"
-                                    "background-color: rgba(255, 255, 255, 250);"
-                                    "font-size: 17px;"
-                                    "color: rgba(0, 0, 0, 200);}"
-                              "QPushButton:hover{border: 1px solid black;"
-                              "border-radius: 20px;"
-                              "background-position: bottom center;"
-                              "background-color: rgba(125, 125, 125, 250);"
-                              "font-size: 17px;"
-                              "color: rgba(250, 250, 250, 250);}"
+                                  "border-radius: 20px;"
+                                  "background-position: bottom center;"
+                                  "background-color: rgba(255, 255, 255, 250);"
+                                  "font-size: 17px;"
+                                  "color: rgba(0, 0, 0, 200);}"
+                                  "QPushButton:hover{border: 1px solid black;"
+                                  "border-radius: 20px;"
+                                  "background-position: bottom center;"
+                                  "background-color: rgba(125, 125, 125, 250);"
+                                  "font-size: 17px;"
+                                  "color: rgba(250, 250, 250, 250);}"
                                   "QLineEdit{"
                                   "background-color: rgba(255, 255, 255, 250);"
                                   "font-size: 17px;"
-                                   "color: rgba(0, 0, 0, 200);"
+                                  "color: rgba(0, 0, 0, 200);"
                                   "}");
-    findGameWidget->setGeometry(300,100,300,400);
+    findGameWidget->setGeometry(300, 100, 300, 400);
     findGameWidget->hide();
 
     createGameWidget = new QWidget(backgroundWidget);
-    createGameWidget->setGeometry(300,100,300,400);
+    createGameWidget->setGeometry(300, 100, 300, 400);
     createGameWidget->hide();
 
     ipText = new QLineEdit(findGameWidget);
@@ -84,15 +85,15 @@ MultiplayerMenuWidget::MultiplayerMenuWidget(QWidget *parent, QStackedWidget* ma
     portText = new QLineEdit(findGameWidget);
     portText->setPlaceholderText("Port");
 
-    QPushButton* findFindButton = new QPushButton("Find", findGameWidget);
-    QPushButton* findBackButton = new QPushButton("Back", findGameWidget);
+    QPushButton *findFindButton = new QPushButton("Find", findGameWidget);
+    QPushButton *findBackButton = new QPushButton("Back", findGameWidget);
 
-    ipText->setGeometry(0,0,250,50);
-    portText->setGeometry(0,100,250,50);
-    findFindButton->setGeometry(25,200,200,25);
-    findBackButton->setGeometry(25,250,200,25);
+    ipText->setGeometry(0, 0, 250, 50);
+    portText->setGeometry(0, 100, 250, 50);
+    findFindButton->setGeometry(25, 200, 200, 25);
+    findBackButton->setGeometry(25, 250, 200, 25);
 
-    QPushButton* createBackButton = new QPushButton("Back", createGameWidget);
+    QPushButton *createBackButton = new QPushButton("Back", createGameWidget);
     ipRead = new QLabel(createGameWidget);
     portRead = new QLabel(createGameWidget);
 
@@ -113,36 +114,35 @@ MultiplayerMenuWidget::MultiplayerMenuWidget(QWidget *parent, QStackedWidget* ma
                                     "background-color: rgba(255, 255, 255, 250);"
                                     "font-size: 17px;"
                                     "color: rgba(0, 0, 0, 200);}"
-                              "QPushButton:hover{border: 1px solid black;"
-                              "border-radius: 20px;"
-                              "background-position: bottom center;"
-                              "background-color: rgba(125, 125, 125, 250);"
-                              "font-size: 17px;"
-                              "color: rgba(250, 250, 250, 250);}"
-                                  "QLabel{border: 1px solid black;"
+                                    "QPushButton:hover{border: 1px solid black;"
+                                    "border-radius: 20px;"
+                                    "background-position: bottom center;"
+                                    "background-color: rgba(125, 125, 125, 250);"
+                                    "font-size: 17px;"
+                                    "color: rgba(250, 250, 250, 250);}"
+                                    "QLabel{border: 1px solid black;"
                                     "background-position: bottom center;"
                                     "background-color: rgb(255, 255, 255);"
                                     "font-size: 15px;"
                                     "color: rgb(0, 0, 0);}"
                                     "QRadioButton{"
-                                      "background-position: bottom center;"
-                                      "font-size: 15px;"
-                                      "color: rgb(255, 255, 255);}");
+                                    "background-position: bottom center;"
+                                    "font-size: 15px;"
+                                    "color: rgb(255, 255, 255);}");
 
-    QLabel* gameSizeLabel = new QLabel("Game Size",createGameWidget);
-    gameSizeLabel->setGeometry(0,0,150,45);
+    QLabel *gameSizeLabel = new QLabel("Game Size", createGameWidget);
+    gameSizeLabel->setGeometry(0, 0, 150, 45);
     gameSizeLabel->setStyleSheet("background-position: bottom center;"
-                  "background-color: rgb(255, 255, 255);"
-                  "font-size: 25px;"
-                  "color: rgb(0, 0, 0);");
+                                 "background-color: rgb(255, 255, 255);"
+                                 "font-size: 25px;"
+                                 "color: rgb(0, 0, 0);");
 
-
-    sz_nineteen->setGeometry(25,50,100,20);
-    sz_thirteen->setGeometry(25,75,100,20);
-    sz_nine->setGeometry(25,100,100,20);
+    sz_nineteen->setGeometry(25, 50, 100, 20);
+    sz_thirteen->setGeometry(25, 75, 100, 20);
+    sz_nine->setGeometry(25, 100, 100, 20);
     ipRead->setGeometry(0, 150, 200, 40);
     portRead->setGeometry(0, 190, 200, 40);
-    createBackButton->setGeometry(0,250,150,40);
+    createBackButton->setGeometry(0, 250, 150, 40);
 
     connect(createGameButton, &QPushButton::clicked, this, &MultiplayerMenuWidget::createGamePushed);
     connect(findGameButton, &QPushButton::clicked, this, &MultiplayerMenuWidget::findGamePushed);
@@ -155,132 +155,164 @@ MultiplayerMenuWidget::MultiplayerMenuWidget(QWidget *parent, QStackedWidget* ma
     connect(findFindButton, &QPushButton::clicked, this, &MultiplayerMenuWidget::findGameButtonPushed);
 }
 
-MultiplayerMenuWidget::~MultiplayerMenuWidget(){
+MultiplayerMenuWidget::~MultiplayerMenuWidget()
+{
     /*
         Delete MultiplayerMenuWidget, end socket and close, close server
     */
-    if (socket != nullptr){
-        if (socket->state() == QTcpSocket::ConnectedState){
+    if (socket != nullptr)
+    {
+        if (socket->state() == QTcpSocket::ConnectedState)
+        {
             socket->disconnectFromHost();
-        }else if (socket->state() == QTcpSocket::ConnectingState){
+        }
+        else if (socket->state() == QTcpSocket::ConnectingState)
+        {
             socket->abort();
         }
         socket->close();
         delete socket;
     }
-    if (server != nullptr){
+    if (server != nullptr)
+    {
         server->close();
         delete server;
     }
 }
 
-void MultiplayerMenuWidget::exitButtonPushed(){
+void MultiplayerMenuWidget::exitButtonPushed()
+{
     /*
         Back to home
     */
     mainstack->setCurrentIndex(0);
 }
 
-void MultiplayerMenuWidget::createGamePushed(){
+void MultiplayerMenuWidget::createGamePushed()
+{
     /*
         Create Game button pushed, setup QTcpServer, await connection
     */
     hideFindGame();
-    if (server == nullptr){
+    if (server == nullptr)
+    {
         server = new QTcpServer(createGameWidget);
     }
     server->listen(QHostAddress::Any);
     connect(server, &QTcpServer::newConnection, this, &MultiplayerMenuWidget::serverConnected);
 
     const QHostAddress &localhost = QHostAddress(QHostAddress::LocalHost);
-    for (const QHostAddress &address: QNetworkInterface::allAddresses()) {
+    for (const QHostAddress &address : QNetworkInterface::allAddresses())
+    {
         if (address.protocol() == QAbstractSocket::IPv4Protocol && address != localhost)
-             ipRead->setText(QString("IP Address: ") + address.toString());
+            ipRead->setText(QString("IP Address: ") + address.toString());
     }
     portRead->setText(QString("Port: ") + QString::number(server->serverPort()));
     createGameWidget->show();
 }
 
-void MultiplayerMenuWidget::findGamePushed(){
+void MultiplayerMenuWidget::findGamePushed()
+{
     /*
         Find Game button pushed, setup QTcpSocket, wait for user input
     */
     hideCreateGame();
-    if (socket == nullptr){
+    if (socket == nullptr)
+    {
         socket = new QTcpSocket(findGameWidget);
     }
     findGameWidget->show();
 }
 
-void MultiplayerMenuWidget::findGameButtonPushed(){
+void MultiplayerMenuWidget::findGameButtonPushed()
+{
     /*
         Find Game button pushed, give parameters to QTcpSocket, connect
     */
-    qDebug()<< "Socket";
-    socket->connectToHost(ipText->displayText(),quint16(portText->displayText().toInt()));
-//    connect socket if connected signal to socket connected
+    qDebug() << "Socket";
+    socket->connectToHost(ipText->displayText(), quint16(portText->displayText().toInt()));
+    //    connect socket if connected signal to socket connected
     connect(socket, &QTcpSocket::readyRead, this, &MultiplayerMenuWidget::socketRead);
 }
 
-void MultiplayerMenuWidget::hideCreateGame(){
+void MultiplayerMenuWidget::hideCreateGame()
+{
     /*
         Hide create game
     */
-    if (server!= nullptr){
+    if (server != nullptr)
+    {
         server->close();
     }
-    if (socket != nullptr){
+    if (socket != nullptr)
+    {
         socket->abort();
         socket->close();
     }
     createGameWidget->hide();
 }
 
-void MultiplayerMenuWidget::hideFindGame(){
+void MultiplayerMenuWidget::hideFindGame()
+{
     /*
         Hide find game
     */
-    if (socket != nullptr){
+    if (socket != nullptr)
+    {
         socket->abort();
         socket->close();
     }
     findGameWidget->hide();
 }
 
-void MultiplayerMenuWidget::socketRead(){
+void MultiplayerMenuWidget::socketRead()
+{
     /*
         Read from socket, initialize game
     */
-    if (!initialSent){
+    if (!initialSent)
+    {
         QByteArray datas = socket->readAll();
-        QStringList list = QString(datas).split(" ",QString::SkipEmptyParts);
+        QStringList list = QString(datas).split(" ", QString::SkipEmptyParts);
         enum size sz;
 
-        if (list[0] == "19"){
+        if (list[0] == "19")
+        {
             sz = nineteen;
-        }else if (list[0] == "13"){
+        }
+        else if (list[0] == "13")
+        {
             sz = thirteen;
-        }else if (list[0] == "9"){
+        }
+        else if (list[0] == "9")
+        {
             sz = nine;
-        }else{
+        }
+        else
+        {
             throw(0);
         }
-        if (list[1] == "black"){
+        if (list[1] == "black")
+        {
             game = new GoGameWidget(this, mainstack, sz, human, humanTcp);
-        }else if (list[1] == "white"){
+        }
+        else if (list[1] == "white")
+        {
             game = new GoGameWidget(this, mainstack, sz, humanTcp, human);
-
         }
         findGameWidget->hide();
         game->player_1->setSocket(socket);
         game->player_2->setSocket(socket);
         game->show();
         disconnect(socket, &QTcpSocket::readyRead, this, &MultiplayerMenuWidget::socketRead);
-        if (list[1] == "black"){
+        if (list[1] == "black")
+        {
             QMessageBox msgBox(backgroundWidget);
             msgBox.setText("Your Color is Black");
             msgBox.exec();
-        }else if (list[1] == "white"){
+        }
+        else if (list[1] == "white")
+        {
             QMessageBox msgBox(backgroundWidget);
             msgBox.setText("Your Color is White");
             msgBox.exec();
@@ -288,7 +320,8 @@ void MultiplayerMenuWidget::socketRead(){
     }
 }
 
-void MultiplayerMenuWidget::serverConnected(){
+void MultiplayerMenuWidget::serverConnected()
+{
     /*
         Read from server, initialize game
         Send game parmeters to other socket
@@ -297,38 +330,48 @@ void MultiplayerMenuWidget::serverConnected(){
                     Stone color is given in random.
     */
     socket = server->nextPendingConnection();
-    int randomInt = rand()%2;
+    int randomInt = rand() % 2;
     stone selfType = noStone;
     enum size sz;
     QString str;
-    if (sz_nineteen->isChecked()){
+    if (sz_nineteen->isChecked())
+    {
         str = QString("19 ");
         sz = nineteen;
-    }else if (sz_thirteen->isChecked()){
+    }
+    else if (sz_thirteen->isChecked())
+    {
         str = QString("13 ");
         sz = thirteen;
-    }else if (sz_nine->isChecked()){
+    }
+    else if (sz_nine->isChecked())
+    {
         str = QString("9 ");
         sz = nine;
-    }else{
+    }
+    else
+    {
         throw(0);
     }
 
-    if (randomInt){
+    if (randomInt)
+    {
         selfType = black;
         game = new GoGameWidget(this, mainstack, sz, human, humanTcp);
-    }else{
+    }
+    else
+    {
         selfType = white;
         game = new GoGameWidget(this, mainstack, sz, humanTcp, human);
     }
     game->player_1->setSocket(socket);
     game->player_2->setSocket(socket);
 
-    str += (selfType == black? "white" : "black");
+    str += (selfType == black ? "white" : "black");
     socket->write(QByteArray(str.toUtf8()));
     initialSent = true;
     game->show();
     QMessageBox msgBox(backgroundWidget);
-    msgBox.setText(selfType == black?"Your Color is Black": "Your Color is White");
+    msgBox.setText(selfType == black ? "Your Color is Black" : "Your Color is White");
     msgBox.exec();
 }

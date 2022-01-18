@@ -5,7 +5,8 @@
 #include <QObject>
 #include <QTcpSocket>
 
-class GoPlayer: public QObject{
+class GoPlayer : public QObject
+{
     /*
         Template class for different players
     */
@@ -13,11 +14,12 @@ class GoPlayer: public QObject{
 public:
     stone stoneColor;
     RemoveDeadStoneChoice choice = notSet;
+
 public:
     ~GoPlayer(){};
     virtual void giveMove() = 0;
     virtual void setMove(GoMove mv) = 0;
-    virtual void setSocket(QTcpSocket* socket) = 0;
+    virtual void setSocket(QTcpSocket *socket) = 0;
     virtual void setupRemoveDeadStones() = 0;
     virtual void endRemoveDeadStones() = 0;
 signals:
@@ -27,20 +29,22 @@ signals:
     void hideEndButton();
 public slots:
     virtual void getRemoveDeadStones() = 0;
+
 protected:
     GoMove moveStorage;
-    QTcpSocket* socket = nullptr;
+    QTcpSocket *socket = nullptr;
     bool removeMessage = false;
 };
 
-class HumanGoPlayer: public GoPlayer{
+class HumanGoPlayer : public GoPlayer
+{
     /*
         Class for human go players
     */
     Q_OBJECT
 public:
     HumanGoPlayer(stone stoneColor);
-    ~HumanGoPlayer(){}
+    ~HumanGoPlayer() {}
     void giveMove() override;
     void setMove(GoMove mv) override;
     void setSocket(QTcpSocket *socket) override;
@@ -49,10 +53,12 @@ public:
 public slots:
     void getRemoveDeadStones() override;
     void recievedRemoveReadySignal();
+
 protected:
 };
 
-class HumanTcpGoPlayer: public GoPlayer{
+class HumanTcpGoPlayer : public GoPlayer
+{
     /*
         Class for other go player in multiplayer
     */
@@ -68,18 +74,19 @@ public slots:
     void getMoveFromSocket();
     void getRemoveDeadStones() override;
     void getRemoveDeadStonesSocket();
-protected:
 
+protected:
 };
 
-class ComputerGoPlayerEasy: public GoPlayer{
+class ComputerGoPlayerEasy : public GoPlayer
+{
     /*
         Unfinished computer go player class
     */
     Q_OBJECT
 public:
     ComputerGoPlayerEasy(stone stoneColor);
-    ~ComputerGoPlayerEasy(){}
+    ~ComputerGoPlayerEasy() {}
     void giveMove() override;
     void setMove(GoMove mv) override;
     void setSocket(QTcpSocket *socket) override;

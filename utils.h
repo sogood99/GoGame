@@ -22,18 +22,21 @@
     Header for most include and useful classes/functions
 */
 
-enum stone: int{
+enum stone : int
+{
     black = 1,
     white = -1,
     noStone = 0
 };
 
-enum DeadStone{
+enum DeadStone
+{
     isDead = 1,
     notDead = 0
 };
 
-enum RemoveDeadStoneChoice{
+enum RemoveDeadStoneChoice
+{
     /*
         Enum for last step of removing dead stones
     */
@@ -45,7 +48,8 @@ enum RemoveDeadStoneChoice{
 
 stone otherStone(stone stn);
 
-enum size: int{
+enum size : int
+{
     /*
         Enum for board size
     */
@@ -54,19 +58,22 @@ enum size: int{
     nineteen = 19
 };
 
-class Pos{
+class Pos
+{
     /*
         Class for position on board
     */
 public:
     QVector<int> position = QVector<int>(2, 0);
+
 public:
     Pos(int x, int y);
-    ~Pos(){}
+    ~Pos() {}
     void setPosition(int x, int y);
 };
 
-enum moveType{
+enum moveType
+{
     /*
         Enum for different moves
     */
@@ -75,7 +82,8 @@ enum moveType{
     place = 1
 };
 
-class GoMove{
+class GoMove
+{
     /*
         Class for moves
     */
@@ -83,6 +91,7 @@ public:
     bool isSet = false;
     moveType mt;
     Pos pos = Pos(-1, -1);
+
 public:
     GoMove();
     GoMove(moveType mvtp, Pos pos);

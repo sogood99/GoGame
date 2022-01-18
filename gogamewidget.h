@@ -7,7 +7,8 @@
 #include <QPainter>
 #include <QStackedWidget>
 
-enum PlayerType{
+enum PlayerType
+{
     /*
         Enum for player types
     */
@@ -23,16 +24,17 @@ class GoGameWidget : public QWidget
     */
     Q_OBJECT
 public:
-    GoBoard* board = nullptr;
-    GoPlayer* player_1 = nullptr;
-    GoPlayer* player_2 = nullptr;
+    GoBoard *board = nullptr;
+    GoPlayer *player_1 = nullptr;
+    GoPlayer *player_2 = nullptr;
     int moveNum = 0;
     stone currentMove = black;
     std::map<stone, int> captureCount;
     std::map<stone, int> score;
     stone winColor = noStone;
+
 public:
-    GoGameWidget(QWidget *parent = nullptr, QStackedWidget* mainstack = nullptr, enum size sz = nineteen, PlayerType player_1_type = human,
+    GoGameWidget(QWidget *parent = nullptr, QStackedWidget *mainstack = nullptr, enum size sz = nineteen, PlayerType player_1_type = human,
                  PlayerType player_2_type = human);
     ~GoGameWidget();
 signals:
@@ -46,9 +48,10 @@ public slots:
     void endRemoveDeadStones();
     void getDeadStonesChoiceinput();
     void hideEndButton();
+
 protected:
-    QWidget* parent = nullptr;
-    QStackedWidget* mainstack = nullptr;
+    QWidget *parent = nullptr;
+    QStackedWidget *mainstack = nullptr;
     QVector<QVector<stone>> finalBoard;
     void computeFinalScore();
     void homePressed();
@@ -64,18 +67,18 @@ protected:
     void updateLabel();
     PlayerType player_1_type;
     PlayerType player_2_type;
-    QVector<QVector<QPushButton*>> stonesButtonVector;
-    QVector<QVector<DeadStone>>* deadStones = nullptr;
-    QWidget* backgroundWidget = nullptr;
-    QLabel* moveLabel = nullptr;
-    QLabel* backgroundLabel = nullptr;
-    QPushButton* resignButton = nullptr;
-    QPushButton* passButton = nullptr;
-    QPushButton* homeButton = nullptr;
-    QPushButton* endStoneRemoval = nullptr;
+    QVector<QVector<QPushButton *>> stonesButtonVector;
+    QVector<QVector<DeadStone>> *deadStones = nullptr;
+    QWidget *backgroundWidget = nullptr;
+    QLabel *moveLabel = nullptr;
+    QLabel *backgroundLabel = nullptr;
+    QPushButton *resignButton = nullptr;
+    QPushButton *passButton = nullptr;
+    QPushButton *homeButton = nullptr;
+    QPushButton *endStoneRemoval = nullptr;
     int passCount = 0;
-    QSound* placeStoneAudio = nullptr;
-    QSound* captureAudio = nullptr;
+    QSound *placeStoneAudio = nullptr;
+    QSound *captureAudio = nullptr;
 };
 
 #endif // GOGAMEWIDGET_H

@@ -3,7 +3,8 @@
 
 #include "utils.h"
 
-enum capturedState: int{
+enum capturedState : int
+{
     /*
         Caputured state used in caputured tuple
     */
@@ -12,7 +13,8 @@ enum capturedState: int{
     Captured = 2
 };
 
-class CapturedTuple{
+class CapturedTuple
+{
     /*
         Class containing everything needed in detecting captured stones
     */
@@ -20,34 +22,40 @@ public:
     bool isCaptured = false;
     int captureNum = 0;
     QVector<QVector<capturedState>> capturedVector;
+
 public:
     CapturedTuple(size boardSize);
     CapturedTuple(size boardSize, bool tfCaptured);
-    ~CapturedTuple(){}
+    ~CapturedTuple() {}
     void setBool(bool tf);
     void setCaptured(Pos p);
     void setNotCaptured(Pos p);
     capturedState getState(Pos p);
-    void append(CapturedTuple other);//add other's captured to self
+    void append(CapturedTuple other); //add other's captured to self
     int countCaptured();
 };
 
-class boolInt{
+class boolInt
+{
 public:
     bool boolean;
     int integer;
+
 public:
-    boolInt(bool inptbl, int inptn){
+    boolInt(bool inptbl, int inptn)
+    {
         boolean = inptbl;
         integer = inptn;
     }
-    boolInt(bool inptbl){
+    boolInt(bool inptbl)
+    {
         boolean = inptbl;
         integer = 0;
     }
 };
 
-class GoBoard{
+class GoBoard
+{
     /*
         Class containing everything needed for a functioning go board
     */
@@ -55,15 +63,17 @@ public:
     size boardSize;
     QVector<QVector<stone>> currentBoard;
     QVector<QVector<stone>> lastBoard;
+
 public:
     GoBoard(size boardSize = nineteen);
-    ~GoBoard(){}
-    void putStone(Pos p, stone stn);// putStone puts stone without caring if it is valid
-    boolInt placeStone(Pos p, stone stn);// placeStone puts stone and caring if it is valid, uses put stone
+    ~GoBoard() {}
+    void putStone(Pos p, stone stn);      // putStone puts stone without caring if it is valid
+    boolInt placeStone(Pos p, stone stn); // placeStone puts stone and caring if it is valid, uses put stone
     bool canPlaceStone(Pos p, stone stn);
     QVector<QVector<stone>> floodFill(QVector<QVector<DeadStone>> deadStones);
     void displayBoardConsole();
     void displayLastBoardConsole();
+
 protected:
     QVector<Pos> neighbor(Pos p);
     bool positionInBoard(Pos p);
@@ -73,10 +83,11 @@ protected:
     bool isEye(Pos p, stone stn);
     void setLastBoard();
     CapturedTuple captureOther(Pos p, stone stn); // place stone as position to capture other
-    CapturedTuple capture(Pos p, stone stn);// for a stone in a group that can capture, used by capture other (DFS)
+    CapturedTuple capture(Pos p, stone stn);      // for a stone in a group that can capture, used by capture other (DFS)
     void removeCapturedStones(CapturedTuple capturedTup);
+
 private:
-    void DFSFloodFill(int i,int j, QVector<QVector<bool>> &accessed,QVector<QVector<stone>> &filled, QVector<QVector<DeadStone>> deadStones);
+    void DFSFloodFill(int i, int j, QVector<QVector<bool>> &accessed, QVector<QVector<stone>> &filled, QVector<QVector<DeadStone>> deadStones);
 };
 
 #endif // GOBOARD_H
